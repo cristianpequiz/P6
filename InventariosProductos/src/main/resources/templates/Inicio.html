@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <header th:replace="Plantilla/Plantilla :: encabezado"></header>
+        
+        <a th:href="@{/agregarProducto}">Agregar producto</a>
+        
+        <br>
+        <br>
+        
+        <table border="2">
+       
+            <tr>
+                
+                <th>Id_producto</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+                
+            </tr>
+            
+            <tr th:each="producto: ${productos}">
+                
+                <td th:text="${producto.idProducto}">Mostrar id del producto</td>
+                <td th:text="${producto.nombre}">Mostrar nombre</td>
+                <td th:text="${producto.descripcion}">Mostrar descripción</td>
+                <td th:text="${producto.precio + '$'}">Mostrar precio</td>
+                <td th:text="'Unidades :' + ${producto.cantidad}"> Mostrar cantidad</td>
+                <td th:text="${producto.categoria}">Mostrar categoria</td>
+                
+                <td><a th:href="@{/cambiarProducto/} + ${producto.idProducto}" >Cambiar</a></td>
+                <td><a th:href="@{/borrarProducto(idProducto = ${producto.idProducto})}">Borrar</a></td>
+                
+            </tr>
+            
+        </table> 
+        
+        <br>
+        <br>
+        <!-- Para buscar por id -->
+        <form th:action="@{/buscarPorId}" method="get">
+            <label for="idProducto">Id_producto</label>
+            <input type="text" name="idProducto" id="idProducto"/>
+            
+            <input type="submit" name="buscarPorId" value="Buscar"/>
+        </form>
+        <br>
+        <!-- Para buscar categoria -->
+        <form th:action="@{/buscarPorCategoria}" method="get">
+            <label for="categoria">Categoría</label>
+            
+            <select id="categoria" name="categoria">
+                <option value="">Seleccione una categoria</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Muebles">Muebles</option>
+                <option value="Deporte">Deporte</option>
+            </select>
+            
+            <input type="submit" name="buscarPorGenero" value="Buscar"/>
+        </form>
+        <br>
+        <a th:href="@{/agregarPedido}">Agregar pedido</a>
+        <br>
+        <a th:href="@{/verPedidos}">Pedidos</a>
+        
+    </body>
+</html> 
+   
+ 

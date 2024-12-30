@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <header th:replace="Plantilla/Plantilla :: encabezado"></header>
+        
+        <table border="2">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+            </tr>
+            
+            <tr th:each="producto: ${productos}">
+                
+                <td th:text="${producto.idProducto}">Mostrar id del producto</td>
+                <td th:text="${producto.nombre}">Mostrar nombre</td>
+                <td th:text="${producto.descripcion}">Mostrar descripción</td>
+                <td th:text="${producto.precio + '$'}">Mostrar precio</td>
+                <td th:text="'Unidades :' + ${producto.cantidad}">Mostrar cantidad</td>
+                <td th:text="${producto.categoria}">Mostrar categoria</td>
+                
+                <td><a th:href="@{/cambiarProducto/} + ${producto.idProducto}" >Cambiar</a></td>
+                <td><a th:href="@{/borrarProducto(id_producto = ${producto.idProducto})}">Borrar</a></td>
+                
+            </tr>
+            
+        </table>
+        
+    </body>
+</html>

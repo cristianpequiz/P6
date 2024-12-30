@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <header th:replace="Plantilla/Plantilla :: encabezado"></header>
+        
+        <form th:action="@{guardarPedido}" method="post" th:object="${pedido}" >
+            
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" th:field="*{nombre}" />
+            <br>
+            <label for="cantidad">Cantidad</label>
+            <input type="number" name="nombre" id="nombre" th:field="*{nombre}" />
+            <br>
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria" th:field="*{categoria}">
+                
+                <option value="">Seleccione una categoria</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Muebles">Muebles</option>
+                <option value="Deporte">Deporte</option>
+                
+            </select>
+            <br>
+            <input type="submit" name="guardarPedido" value="Guardar"/>
+            
+        </form>
+        
+    </body>
+</html>
